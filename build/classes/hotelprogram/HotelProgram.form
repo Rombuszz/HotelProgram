@@ -2,7 +2,7 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    <Component class="javax.swing.ButtonGroup" name="szobaTipusok">
     </Component>
   </NonVisualComponents>
   <Properties>
@@ -360,7 +360,7 @@
                 <Component class="javax.swing.JRadioButton" name="rdbbtnAlap">
                   <Properties>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                      <ComponentRef name="buttonGroup1"/>
+                      <ComponentRef name="szobaTipusok"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="18" style="1"/>
@@ -415,7 +415,7 @@
                 <Component class="javax.swing.JRadioButton" name="rdbbtnFelso">
                   <Properties>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                      <ComponentRef name="buttonGroup1"/>
+                      <ComponentRef name="szobaTipusok"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="18" style="1"/>
@@ -467,7 +467,7 @@
                 <Component class="javax.swing.JRadioButton" name="rdbbtnKozep">
                   <Properties>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                      <ComponentRef name="buttonGroup1"/>
+                      <ComponentRef name="szobaTipusok"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="18" style="1"/>
@@ -584,6 +584,9 @@
                   <SpinnerModel initial="0" maximum="30" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="spnrEjszSzamaStateChanged"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -684,6 +687,9 @@
                   <SpinnerModel initial="0" maximum="4" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="spnrAgyakSzamaStateChanged"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -800,6 +806,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbbxFelnottekActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -819,6 +828,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbbxGyerekekActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -933,6 +945,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Wi-Fi"/>
               </Properties>
+              <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="tgbtnWifiStateChanged"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="tgbtnSzef">
               <Properties>
@@ -941,6 +956,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sz&#xe9;f"/>
               </Properties>
+              <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="tgbtnSzefStateChanged"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="tgbtnSzobaszerviz">
               <Properties>
@@ -949,6 +967,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Szobaszerviz"/>
               </Properties>
+              <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="tgbtnSzobaszervizStateChanged"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -981,7 +1002,7 @@
                           <Group type="102" attributes="0">
                               <Component id="txtflVegosszeg" min="-2" pref="266" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnRegisztracio1" max="32767" attributes="0"/>
+                              <Component id="btnLefoglalas" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -1000,7 +1021,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="pnlVegosszeg" max="32767" attributes="0"/>
                           <Component id="txtflVegosszeg" max="32767" attributes="0"/>
-                          <Component id="btnRegisztracio1" max="32767" attributes="0"/>
+                          <Component id="btnLefoglalas" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -1120,7 +1141,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnRegisztracio1">
+            <Component class="javax.swing.JButton" name="btnLefoglalas">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
@@ -1131,7 +1152,7 @@
                 <Property name="text" type="java.lang.String" value="Lefoglal&#xe1;s"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegisztracio1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLefoglalasActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

@@ -8,22 +8,41 @@ import javax.swing.JOptionPane;
 
 public class HotelProgram extends javax.swing.JFrame {
 
-    public HotelProgram() {
-        initComponents();
-    }
+    String tipusSzoba = "";
+    String szamaEjsz = "";
+    String szamaAgyak = "";
+    String szamaSzem = "";
+    String szamaSzem2 = "";
     
-    
-    int szobaTipus = 0;
+    double vegOsszeg;
+    double szobaTipus;
     int ejszakakSzama = 0;
     int agyakSzama = 0;
     int szemelyekSzama = 0;
-    int extrakExtrak = 0;
+    
+    int ejsz;
+    int agyak;
+    
+    int szobaPenz = 0;
+    int ejszPenz = 0;
+    int agyakPenz = 0;
+    int szemPenz = 0;
+    int szemFelnottek = 0;
+    int szemGyerekek = 0;
+    
+    int extraWifi = 0;
+    int extraSzobaszerviz = 0;
+    int extraSzef = 0;
+    
+    public HotelProgram() {
+        initComponents();
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        szobaTipusok = new javax.swing.ButtonGroup();
         pnlFejlec = new javax.swing.JPanel();
         lblBooking = new javax.swing.JLabel();
         btnRegisztracio = new javax.swing.JButton();
@@ -65,7 +84,7 @@ public class HotelProgram extends javax.swing.JFrame {
         pnlVegosszeg = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         txtflVegosszeg = new javax.swing.JTextField();
-        btnRegisztracio1 = new javax.swing.JButton();
+        btnLefoglalas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Booking.hu - Szállásfoglalás / Buda Hotel");
@@ -169,7 +188,7 @@ public class HotelProgram extends javax.swing.JFrame {
         pnlAlap.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
         pnlAlap.setPreferredSize(new java.awt.Dimension(246, 43));
 
-        buttonGroup1.add(rdbbtnAlap);
+        szobaTipusok.add(rdbbtnAlap);
         rdbbtnAlap.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         rdbbtnAlap.setText("Alapkategória - 20 m2");
         rdbbtnAlap.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -200,7 +219,7 @@ public class HotelProgram extends javax.swing.JFrame {
         pnlFelso.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
         pnlFelso.setPreferredSize(new java.awt.Dimension(246, 43));
 
-        buttonGroup1.add(rdbbtnFelso);
+        szobaTipusok.add(rdbbtnFelso);
         rdbbtnFelso.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         rdbbtnFelso.setText("Felsőkategória - 38 m2");
         rdbbtnFelso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -230,7 +249,7 @@ public class HotelProgram extends javax.swing.JFrame {
         pnlKozep.setBackground(new java.awt.Color(244, 244, 244));
         pnlKozep.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
-        buttonGroup1.add(rdbbtnKozep);
+        szobaTipusok.add(rdbbtnKozep);
         rdbbtnKozep.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         rdbbtnKozep.setText("Középkategória - 32 m2");
         rdbbtnKozep.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -317,6 +336,11 @@ public class HotelProgram extends javax.swing.JFrame {
 
         spnrEjszSzama.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         spnrEjszSzama.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
+        spnrEjszSzama.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnrEjszSzamaStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlEjszSzamaLayout = new javax.swing.GroupLayout(pnlEjszSzama);
         pnlEjszSzama.setLayout(pnlEjszSzamaLayout);
@@ -368,6 +392,11 @@ public class HotelProgram extends javax.swing.JFrame {
 
         spnrAgyakSzama.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         spnrAgyakSzama.setModel(new javax.swing.SpinnerNumberModel(0, 0, 4, 1));
+        spnrAgyakSzama.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnrAgyakSzamaStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlAgyakSzamaLayout = new javax.swing.GroupLayout(pnlAgyakSzama);
         pnlAgyakSzama.setLayout(pnlAgyakSzamaLayout);
@@ -420,9 +449,19 @@ public class HotelProgram extends javax.swing.JFrame {
 
         cmbbxFelnottek.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         cmbbxFelnottek.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "     Felnőttek", "     1 Felnőtt", "     2 Felnőtt", "     3 Felnőtt", "     4 Felnőtt" }));
+        cmbbxFelnottek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbbxFelnottekActionPerformed(evt);
+            }
+        });
 
         cmbbxGyerekek.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         cmbbxGyerekek.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "     Gyerekek", "     1 Gyerek", "     2 Gyerek", "     3 Gyerek", "     4 Gyerek" }));
+        cmbbxGyerekek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbbxGyerekekActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlSzemSzamaLayout = new javax.swing.GroupLayout(pnlSzemSzama);
         pnlSzemSzama.setLayout(pnlSzemSzamaLayout);
@@ -480,12 +519,27 @@ public class HotelProgram extends javax.swing.JFrame {
 
         tgbtnWifi.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         tgbtnWifi.setText("Wi-Fi");
+        tgbtnWifi.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tgbtnWifiStateChanged(evt);
+            }
+        });
 
         tgbtnSzef.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         tgbtnSzef.setText("Széf");
+        tgbtnSzef.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tgbtnSzefStateChanged(evt);
+            }
+        });
 
         tgbtnSzobaszerviz.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         tgbtnSzobaszerviz.setText("Szobaszerviz");
+        tgbtnSzobaszerviz.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tgbtnSzobaszervizStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlExtrakLayout = new javax.swing.GroupLayout(pnlExtrak);
         pnlExtrak.setLayout(pnlExtrakLayout);
@@ -573,12 +627,12 @@ public class HotelProgram extends javax.swing.JFrame {
         txtflVegosszeg.setEditable(false);
         txtflVegosszeg.setFont(new java.awt.Font("Segoe UI", 0, 21)); // NOI18N
 
-        btnRegisztracio1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnRegisztracio1.setForeground(new java.awt.Color(92, 103, 193));
-        btnRegisztracio1.setText("Lefoglalás");
-        btnRegisztracio1.addActionListener(new java.awt.event.ActionListener() {
+        btnLefoglalas.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnLefoglalas.setForeground(new java.awt.Color(92, 103, 193));
+        btnLefoglalas.setText("Lefoglalás");
+        btnLefoglalas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisztracio1ActionPerformed(evt);
+                btnLefoglalasActionPerformed(evt);
             }
         });
 
@@ -597,7 +651,7 @@ public class HotelProgram extends javax.swing.JFrame {
                     .addGroup(pnlLegalsoLayout.createSequentialGroup()
                         .addComponent(txtflVegosszeg, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRegisztracio1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btnLefoglalas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlLegalsoLayout.setVerticalGroup(
@@ -611,7 +665,7 @@ public class HotelProgram extends javax.swing.JFrame {
                 .addGroup(pnlLegalsoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlVegosszeg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtflVegosszeg)
-                    .addComponent(btnRegisztracio1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnLefoglalas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -681,21 +735,93 @@ public class HotelProgram extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, "A belépés technikai okokból nem elérhető!", "Karbantartás folyamatban!", HEIGHT);
     }//GEN-LAST:event_btnBelepesActionPerformed
 
-    private void btnRegisztracio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisztracio1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegisztracio1ActionPerformed
-
+    private void btnLefoglalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLefoglalasActionPerformed
+        if(szobaTipus >= 1 & ejszakakSzama >= 1 & agyakSzama >= 1 & szemFelnottek >= 1){
+            JOptionPane.showMessageDialog(rootPane, "Foglalását rögzítettük!", "Rendszer", HEIGHT);
+            System.exit(0);
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Kérjük az egész oldalt töltse ki! Ne adjon meg hibás adatokat!", "Rendszer", HEIGHT);
+    }//GEN-LAST:event_btnLefoglalasActionPerformed
+}
+    private void szamolasVegosszeg() {
+        vegOsszeg = (szobaPenz * (ejszakakSzama * szemFelnottek)) + ((szobaPenz * (ejszakakSzama * szemGyerekek))*(.7)) + (extraWifi + extraSzobaszerviz + extraSzef);
+        szemelyekSzama = szemFelnottek + szemGyerekek;
+        
+        txtflVegosszeg.setText(vegOsszeg + "");
+        txtflOsszegzes.setText(tipusSzoba + szamaEjsz + szamaAgyak + szamaSzem + szamaSzem2);
+    }
+    
     private void rdbbtnAlapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbbtnAlapActionPerformed
-        // TODO add your handling code here:
+        szobaTipus = 1;
+        szobaPenz = 33150;
+        tipusSzoba = "Alapkategoria ";
+        szamolasVegosszeg();
     }//GEN-LAST:event_rdbbtnAlapActionPerformed
 
     private void rdbbtnKozepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbbtnKozepActionPerformed
-        // TODO add your handling code here:
+        szobaTipus = 1;
+        szobaPenz = 46410;
+        tipusSzoba = "Kozepkategoria ";
+        szamolasVegosszeg();
     }//GEN-LAST:event_rdbbtnKozepActionPerformed
 
     private void rdbbtnFelsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbbtnFelsoActionPerformed
-        // TODO add your handling code here:
+        szobaTipus = 1;
+        szobaPenz = 64210;
+        tipusSzoba = "Felsokategoria ";
+        szamolasVegosszeg();
     }//GEN-LAST:event_rdbbtnFelsoActionPerformed
+
+    private void spnrEjszSzamaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnrEjszSzamaStateChanged
+        ejszakakSzama = (int) spnrEjszSzama.getValue();
+        szamaEjsz = ("/ " + ejszakakSzama + " Ejsz. ");
+        szamolasVegosszeg();
+    }//GEN-LAST:event_spnrEjszSzamaStateChanged
+
+    private void spnrAgyakSzamaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnrAgyakSzamaStateChanged
+        agyakSzama = (int) spnrAgyakSzama.getValue();
+        szamaAgyak = ("/ " + agyakSzama + " Agy. ");
+        szamolasVegosszeg();
+    }//GEN-LAST:event_spnrAgyakSzamaStateChanged
+
+    private void cmbbxFelnottekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbbxFelnottekActionPerformed
+        szemFelnottek = (int) cmbbxFelnottek.getSelectedIndex();
+        szamaSzem = ("/ " + szemFelnottek + " Felnott. ");
+        szamolasVegosszeg();
+    }//GEN-LAST:event_cmbbxFelnottekActionPerformed
+
+    private void cmbbxGyerekekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbbxGyerekekActionPerformed
+        szemGyerekek = (int) cmbbxGyerekek.getSelectedIndex();
+        szamaSzem2 = ("/ " + szemGyerekek + " Gyerek. ");
+        szamolasVegosszeg();
+    }//GEN-LAST:event_cmbbxGyerekekActionPerformed
+
+    private void tgbtnWifiStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tgbtnWifiStateChanged
+        if(tgbtnWifi.isSelected() == true) {
+            extraWifi = 3000;
+        }else{
+            extraWifi = 0;
+        }
+        szamolasVegosszeg();
+    }//GEN-LAST:event_tgbtnWifiStateChanged
+    
+    private void tgbtnSzobaszervizStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tgbtnSzobaszervizStateChanged
+        if(tgbtnSzobaszerviz.isSelected() == true) {
+            extraSzobaszerviz = 8000;
+        }else{
+            extraSzobaszerviz = 0;
+        }   
+        szamolasVegosszeg();
+    }//GEN-LAST:event_tgbtnSzobaszervizStateChanged
+
+    private void tgbtnSzefStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tgbtnSzefStateChanged
+        if(tgbtnSzef.isSelected() == true) {
+            extraSzef = 5000;
+        }else{
+            extraSzef = 0;
+        }   
+        szamolasVegosszeg();
+    }//GEN-LAST:event_tgbtnSzefStateChanged
 
     /**
      * @param args the command line arguments
@@ -734,9 +860,8 @@ public class HotelProgram extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBelepes;
+    private javax.swing.JButton btnLefoglalas;
     private javax.swing.JButton btnRegisztracio;
-    private javax.swing.JButton btnRegisztracio1;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cmbbxFelnottek;
     private javax.swing.JComboBox<String> cmbbxGyerekek;
     private javax.swing.JLabel jLabel6;
@@ -771,10 +896,15 @@ public class HotelProgram extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdbbtnKozep;
     private javax.swing.JSpinner spnrAgyakSzama;
     private javax.swing.JSpinner spnrEjszSzama;
+    private javax.swing.ButtonGroup szobaTipusok;
     private javax.swing.JToggleButton tgbtnSzef;
     private javax.swing.JToggleButton tgbtnSzobaszerviz;
     private javax.swing.JToggleButton tgbtnWifi;
     private javax.swing.JTextField txtflOsszegzes;
     private javax.swing.JTextField txtflVegosszeg;
     // End of variables declaration//GEN-END:variables
+
+    private void print(int ejszakakSzama) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
