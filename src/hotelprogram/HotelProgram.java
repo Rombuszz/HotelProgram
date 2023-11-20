@@ -737,7 +737,7 @@ public class HotelProgram extends javax.swing.JFrame {
 
     private void btnLefoglalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLefoglalasActionPerformed
         if(szobaTipus >= 1 & ejszakakSzama >= 1 & agyakSzama >= 1 & szemFelnottek >= 1){
-            JOptionPane.showMessageDialog(rootPane, "Foglalását rögzítettük!", "Rendszer", HEIGHT);
+            JOptionPane.showMessageDialog(rootPane, "Foglalását rögzítettük!" + "\n" + "Fizetendő: " + vegOsszeg, "Rendszer", HEIGHT);
             System.exit(0);
         }else{
             JOptionPane.showMessageDialog(rootPane, "Kérjük az egész oldalt töltse ki! Ne adjon meg hibás adatokat!", "Rendszer", HEIGHT);
